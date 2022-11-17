@@ -7,12 +7,28 @@ const sectionOfProducts = document.querySelector('.products');
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
-const loadingText = document.createElement('p');
-sectionOfProducts.appendChild(loadingText);
-loadingText.className = 'loading';
-loadingText.innerText = 'carregando...';
-const productList = await fetchProductsList('computador');
-productList.forEach((product) => {
-  sectionOfProducts.appendChild(createProductElement(product));
-});
-loadingText.remove();
+function errorAPI() {
+  const textError = document.createElement('p');
+  textError.className = 'error';
+  textError.innerText = 'Algum erro ocorreu, recarregue a página e tente novamente';
+  sectionOfProducts.appendChild(textError);
+}
+
+async function createList() {
+  try {
+    const loadingText = document.createElement('p');
+    loadingText.className = 'loading';
+    loadingText.innerText = 'carregando...';
+    sectionOfProducts.appendChild(loadingText);
+    const productList = await fetchProductsList('computador');
+    productList.forEach((product) => {
+      sectionOfProducts.appendChild(createProductElement(product));
+    });
+  } catch (erro) {
+    errorAPI();
+  }
+  const loading = document.querySelector('.loading');
+  loading.remove();
+}
+
+createList();
