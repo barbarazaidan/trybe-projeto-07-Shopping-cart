@@ -12,15 +12,15 @@ describe('Teste a função fetchProductsList', () => {
 
   it('fetch é chamado ao executar fetchProductsList', () => {
     
-    fetchProductsList('computador')
-    expect(fetch()).toHaveBeenCalled()
+    fetchProductsList('computador');
+    expect(fetch).toHaveBeenCalled()
 
   });
 
   it('fetch é chamado com o endpoint correto ao executar fetchProductsList', () => {
     
     fetchProductsList('computador')
-    expect(fetch()).toHaveBeenCalledWith('https://api.mercadolibre.com/sites/MLB/search?q=computador')
+    expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/sites/MLB/search?q=computador')
 
   });
 
@@ -32,9 +32,6 @@ describe('Teste a função fetchProductsList', () => {
 
 
   it('fetchProductsList sem argumento retorna um erro', async () => {
-  
-    // fetchProductsList()
-    // await expect(fetch(url)).rejects.toThrow('Termo de busca não informado');
 
     await expect(fetchProductsList()).rejects.toThrow('Termo de busca não informado');
 
