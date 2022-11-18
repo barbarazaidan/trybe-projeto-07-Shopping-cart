@@ -10,14 +10,14 @@ describe('Teste a função fetchProduct', () => {
   
   });
 
-  it('executa a função fetchProduct e verifica se o fetch é chamado', () => {
+  it('executa a função fetchProduct e verifica se o fetch é chamado', async () => {
     
     fetchProduct('MLB1405519561');
-    expect(fetch).toBeCalled();
+    expect(fetch).toHaveBeenCalled();
 
   });
 
-  it('testa se fetch é chamado com o endpoint correto ao executar fetchProduct', () => {
+  it('testa se fetch é chamado com o endpoint correto ao executar fetchProduct', async () => {
 
     fetchProduct('MLB1405519561')
     expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/items/MLB1405519561')
@@ -32,7 +32,8 @@ describe('Teste a função fetchProduct', () => {
 
   it('testa se fetchProduct sem argumento retorna um erro', async () => {
 
-    await expect(fetchProduct()).rejects.toThrow('ID não informado');
+    await expect(fetchProduct()).rejects.toEqual(new Error('ID não informado'));
+    // await expect(fetchProduct()).rejects.toThrow('ID não informado'); - também posso usar desta forma 
 
   });
 
