@@ -1,4 +1,7 @@
-import { removeCartID } from './cartFunctions';
+import { removeCartID, saveCartID } from './cartFunctions';
+import { fetchProduct } from './fetchFunctions';
+
+const paymentCart = document.querySelector('.cart__products'); // lista ol dos produtos no carrinho
 
 // Esses comentários que estão antes de cada uma das funções são chamados de JSdoc,
 // experimente passar o mouse sobre o nome das funções e verá que elas possuem descrições!
@@ -90,6 +93,17 @@ export const createCartProductElement = ({ id, title, price, pictures }) => {
   li.addEventListener('click', () => removeCartProduct(li, id));
   return li;
 };
+// --------------------------------------------------------------------
+// Função responsável por colocar o produto no carrinho - ESTA FOI EU QUE FIZ
+
+async function addCart(idProduct) {
+  const selectedProduct = await fetchProduct(idProduct);
+  // console.log(selectedProduct);
+  const product = createCartProductElement(selectedProduct);
+  paymentCart.appendChild(product);
+  saveCartID(idProduct);
+}
+// --------------------------------------------------------------------
 
 /**
  * Função responsável por criar e retornar o elemento do produto.
@@ -122,6 +136,10 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
     'Adicionar ao carrinho!',
   );
   section.appendChild(cartButton);
+
+  // meu código a partir daqui
+
+  cartButton.addEventListener('click', () => addCart(id));
 
   return section;
 };

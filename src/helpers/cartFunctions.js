@@ -1,3 +1,10 @@
+// OS DADOS ABAIXO ERAM PARA A FUNÇÃO NO FINAL DA PÁGINA, MAS DEU ERRO NO LINT, ENTÃO COLOQUEI TUDO NO ARQUIVO SHOPFUNCTIONS.JS
+// --------------------------------------------------------------------
+// import { fetchProduct } from './fetchFunctions';
+// import { createCartProductElement } from './shopFunctions';
+// const paymentCart = document.querySelector('.cart__products'); // lista ol dos produtos no carrinho
+// --------------------------------------------------------------------
+
 /**
  * Função que retorna todos os itens do carrinho salvos no localStorage.
  * @returns {Array} Itens de ids salvos do carrinho ou array vazio.
@@ -30,3 +37,15 @@ export const removeCartID = (id) => {
   const newCartProducts = cartProducts.filter((product) => product !== id);
   localStorage.setItem('cartProducts', JSON.stringify(newCartProducts));
 };
+
+// --------------------------------------------------------------------
+// QUANDO TENTEI COLOCAR A FUNÇÃO ABAIXO AQUI, O LINT DEU ERRO DE DEPENDENCY CYCLE DETECTED
+
+// // Função responsável por colocar o produto no carrinho
+// export async function addCart(idProduct) {
+//   const selectedProduct = await fetchProduct(idProduct);
+//   // console.log(selectedProduct);
+//   const product = createCartProductElement(selectedProduct);
+//   paymentCart.appendChild(product);
+//   saveCartID(idProduct);
+// }

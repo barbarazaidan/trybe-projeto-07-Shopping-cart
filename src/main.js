@@ -1,9 +1,9 @@
 import { searchCep } from './helpers/cepFunctions';
 import './style.css';
-import { fetchProductsList, fetchProduct } from './helpers/fetchFunctions';
+import { fetchProductsList } from './helpers/fetchFunctions';
 import { createProductElement } from './helpers/shopFunctions';
 
-const sectionOfProducts = document.querySelector('.products');
+const sectionOfProducts = document.querySelector('.products'); // sessão dos produtos na página
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
@@ -32,3 +32,5 @@ async function createList() {
 }
 
 createList();
+
+// fetchProduct('MLB1405519561')
