@@ -1,7 +1,7 @@
 import { searchCep } from './helpers/cepFunctions';
 import './style.css';
 import { fetchProductsList } from './helpers/fetchFunctions';
-import { createProductElement } from './helpers/shopFunctions';
+import { createProductElement, productsOfLocalStorage } from './helpers/shopFunctions';
 
 const sectionOfProducts = document.querySelector('.products'); // sessão dos produtos na página
 
@@ -31,6 +31,6 @@ async function createList() {
   loading.remove();
 }
 
-createList();
+createList(); // coloca os produtos na página
 
-// fetchProduct('MLB1405519561')
+productsOfLocalStorage(); // puxar o local storage para recarregar o carrinho de compras

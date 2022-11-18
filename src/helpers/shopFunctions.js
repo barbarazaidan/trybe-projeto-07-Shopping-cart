@@ -1,7 +1,12 @@
 import { removeCartID, saveCartID, getSavedCartIDs } from './cartFunctions';
+import { saveCartPrice, getSavedCartPrice, decreaseCartPrice } from './cartFunctionsCost';
 import { fetchProduct } from './fetchFunctions';
 
 const paymentCart = document.querySelector('.cart__products'); // lista ol dos produtos no carrinho
+const totalPrice = document.querySelector('.total-price'); // span que está dentro do p
+let sum = 0; // variável para armazenar o valor da soma total
+
+// ------------------------------------------------------------------
 
 // Esses comentários que estão antes de cada uma das funções são chamados de JSdoc,
 // experimente passar o mouse sobre o nome das funções e verá que elas possuem descrições!
@@ -20,6 +25,8 @@ const createProductImageElement = (imageSource) => {
   return img;
 };
 
+// ------------------------------------------------------------------
+
 /**
  * Função responsável por criar e retornar qualquer elemento.
  * @param {string} element - Nome do elemento a ser criado.
@@ -34,6 +41,8 @@ export const createCustomElement = (element, className, innerText = '') => {
   return e;
 };
 
+// ------------------------------------------------------------------
+
 /**
  * Função que recupera o ID do produto passado como parâmetro.
  * @param {Element} product - Elemento do produto.
@@ -43,6 +52,20 @@ export const getIdFromProduct = (product) => (
   product.querySelector('span.product__id').innerText
 );
 
+// --------------------------------------------------------------------
+// Função responsável por decrementar os valores no carrinho (ela é chamada na função removeCartProduct(), já criada pela Trybe - ESTA FOI EU QUE FIZ
+
+async function decreasePrice(id) {
+  const product = await fetchProduct(id);
+  const { price } = product;
+  // console.log('currentSum: ', sum)
+  sum -= price;
+  // console.log('decrease: ', sum)
+  totalPrice.innerText = sum;
+}
+
+// ------------------------------------------------------------------
+
 /**
  * Função que remove o produto do carrinho.
  * @param {Element} li - Elemento do produto a ser removido do carrinho.
@@ -50,8 +73,12 @@ export const getIdFromProduct = (product) => (
  */
 const removeCartProduct = (li, id) => {
   li.remove();
+  decreasePrice(id);
   removeCartID(id);
+  decreaseCartPrice(id);
 };
+
+// ------------------------------------------------------------------
 
 /**
  * Função responsável por criar e retornar um product do carrinho.
@@ -93,16 +120,32 @@ export const createCartProductElement = ({ id, title, price, pictures }) => {
   li.addEventListener('click', () => removeCartProduct(li, id));
   return li;
 };
+
+// --------------------------------------------------------------------
+// Função responsável por somar os valores no carrinho - ESTA FOI EU QUE FIZ
+
+async function sumPrice(price) {
+  sum += price;
+  // console.log('sum: ', sum);
+  saveCartPrice(sum);
+  totalPrice.innerText = sum;
+  // console.log('totalPrice: ', totalPrice);
+}
+
 // --------------------------------------------------------------------
 // Função responsável por colocar o produto no carrinho - ESTA FOI EU QUE FIZ
 
 async function addCart(idProduct) {
   const selectedProduct = await fetchProduct(idProduct);
   // console.log(selectedProduct);
+  const { price } = selectedProduct;
+  // console.log('price: ', price);
   const product = createCartProductElement(selectedProduct);
   paymentCart.appendChild(product);
+  sumPrice(price);
   saveCartID(idProduct);
 }
+
 // --------------------------------------------------------------------
 
 /**
@@ -145,6 +188,28 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
 };
 
 // --------------------------------------------------------------------
+// Função responsável por colocar os produtos do localStorage no carrinho - ESTA FOI EU QUE FIZ
+
+export async function productsOfLocalStorage() {
+  // console.log(getSavedCartPrice())
+  const priceSaved = getSavedCartPrice();
+  totalPrice.innerText = priceSaved;
+  // console.log(getSavedCartIDs())
+  const idsSaved = getSavedCartIDs();
+  const recoveredProducts = idsSaved.map(async (id) => {
+    const product = await fetchProduct(id);
+    // console.log(product)
+    return product;
+  });
+  // console.log('recoveredProducts: ', recoveredProducts);
+  const products = await Promise.all(recoveredProducts);
+  // console.log('products: ', products);
+  products.forEach((product) => {
+    const productHTML = createCartProductElement(product);
+    return paymentCart.appendChild(productHTML);
+  });
+}
+// --------------------------------------------------------------------
 //  O código abaixo leu os produtos no carrinho, mas faltou usar o promise.all para manter a ordem de inserção.
 
 // async function productsOfLocalStorage() {
@@ -158,26 +223,6 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
 //   console.log(recoveredData)
 //   return recoveredData;
 // }
-// --------------------------------------------------------------------
-// Função responsável por colocar os produtos do localStorage no carrinho - ESTA FOI EU QUE FIZ
-
-async function productsOfLocalStorage() {
-  // console.log(getSavedCartIDs())
-  const idsSaved = getSavedCartIDs();
-  const recoveredProducts = idsSaved.map(async (id) => {
-    const product = await fetchProduct(id);
-    return product;
-  });
-  console.log('recoveredProducts: ', recoveredProducts);
-  const products = await Promise.all(recoveredProducts);
-  console.log('products: ', products);
-  products.forEach((product) => {
-    const productHTML = createCartProductElement(product);
-    return paymentCart.appendChild(productHTML);
-  });
-}
-
-productsOfLocalStorage();
 
 // --------------------------------------------------------------------
 // O código abaixo leu os produtos no carrinho, mas não captou a questão da promise para manter a ordem de inserção.
