@@ -5,6 +5,11 @@
 // const paymentCart = document.querySelector('.cart__products'); // lista ol dos produtos no carrinho
 // --------------------------------------------------------------------
 
+// import { fetchProduct } from './fetchFunctions';
+// import { createCartProductElement } from './shopFunctions';
+
+// const paymentCart = document.querySelector('.cart__products'); // lista ol dos produtos no carrinho
+
 /**
  * Função que retorna todos os itens do carrinho salvos no localStorage.
  * @returns {Array} Itens de ids salvos do carrinho ou array vazio.
@@ -23,6 +28,7 @@ export const saveCartID = (id) => {
 
   const cartProducts = getSavedCartIDs();
   const newCartProducts = [...cartProducts, id];
+  // console.log(newCartProducts)
   localStorage.setItem('cartProducts', JSON.stringify(newCartProducts));
 };
 
@@ -38,7 +44,24 @@ export const removeCartID = (id) => {
   localStorage.setItem('cartProducts', JSON.stringify(newCartProducts));
 };
 
-// --------------------------------------------------------------------
+// // --------------------------------------------------------------------
+// // Função responsável por colocar os produtos do localStorage no carrinho - ESTA FOI EU QUE FIZ
+
+// async function productsOfLocalStorage() {
+//   // console.log(getSavedCartIDs())
+//   const idsSaved = getSavedCartIDs();
+//   const recoveredData = idsSaved.map(async (id) => {
+//     const product = await fetchProduct(id)
+//     const productHTML = createCartProductElement(product)
+//     return paymentCart.appendChild(productHTML);
+//   });
+//   return recoveredData;
+//   // Promise.all();
+// }
+
+// productsOfLocalStorage();
+
+// // --------------------------------------------------------------------
 // QUANDO TENTEI COLOCAR A FUNÇÃO ABAIXO AQUI, O LINT DEU ERRO DE DEPENDENCY CYCLE DETECTED
 
 // // Função responsável por colocar o produto no carrinho

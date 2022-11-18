@@ -1,4 +1,4 @@
-import { removeCartID, saveCartID } from './cartFunctions';
+import { removeCartID, saveCartID, getSavedCartIDs } from './cartFunctions';
 import { fetchProduct } from './fetchFunctions';
 
 const paymentCart = document.querySelector('.cart__products'); // lista ol dos produtos no carrinho
@@ -140,6 +140,59 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
   // meu código a partir daqui
 
   cartButton.addEventListener('click', () => addCart(id));
-
+  // --------------------------------------------------
   return section;
 };
+
+// --------------------------------------------------------------------
+//  O código abaixo não leu os produtos no carrinho, mas faltou usar o promise.all para manter a ordem de inserção.
+
+// async function productsOfLocalStorage() {
+//   // console.log(getSavedCartIDs())
+//   const idsSaved = getSavedCartIDs();
+//   const recoveredData = idsSaved.map(async (id) => {
+//     const product = await fetchProduct(id);
+//     const productHTML = createCartProductElement(product);
+//     return paymentCart.appendChild(productHTML);
+//   });
+//   console.log(recoveredData)
+//   return recoveredData;
+// }
+// --------------------------------------------------------------------
+// Função responsável por colocar os produtos do localStorage no carrinho - ESTA FOI EU QUE FIZ
+
+async function productsOfLocalStorage() {
+  // console.log(getSavedCartIDs())
+  const idsSaved = getSavedCartIDs();
+  const recoveredProducts = idsSaved.map(async (id) => {
+    const product = await fetchProduct(id);
+    return product;
+  });
+  console.log('recoveredProducts: ', recoveredProducts);
+  const products = await Promise.all(recoveredProducts);
+  console.log('products: ', products);
+  products.forEach((product) => {
+    const productHTML = createCartProductElement(product);
+    return paymentCart.appendChild(productHTML);
+  });
+}
+
+productsOfLocalStorage();
+
+// --------------------------------------------------------------------
+// O código abaixo não leu os produtos no carrinho, mas não captou a questão da promise para manter a ordem de inserção.
+
+// async function productsOfLocalStorage() {
+//   // console.log(getSavedCartIDs())
+//   const idsSaved = getSavedCartIDs();
+//   const recoveredData = await Promise.all(idsSaved.map(async (id) => {
+//     const product = await fetchProduct(id);
+//     const productHTML = createCartProductElement(product);
+//     return paymentCart.appendChild(productHTML);
+//   }));
+//   // const allThePromises = await Promise.all(recoveredData);
+//   console.log(recoveredData)
+//   //console.log(allThePromises)
+//   return recoveredData;
+//   // return allThePromises;
+// }
