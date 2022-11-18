@@ -145,7 +145,7 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
 };
 
 // --------------------------------------------------------------------
-//  O código abaixo não leu os produtos no carrinho, mas faltou usar o promise.all para manter a ordem de inserção.
+//  O código abaixo leu os produtos no carrinho, mas faltou usar o promise.all para manter a ordem de inserção.
 
 // async function productsOfLocalStorage() {
 //   // console.log(getSavedCartIDs())
@@ -180,7 +180,7 @@ async function productsOfLocalStorage() {
 productsOfLocalStorage();
 
 // --------------------------------------------------------------------
-// O código abaixo não leu os produtos no carrinho, mas não captou a questão da promise para manter a ordem de inserção.
+// O código abaixo leu os produtos no carrinho, mas não captou a questão da promise para manter a ordem de inserção.
 
 // async function productsOfLocalStorage() {
 //   // console.log(getSavedCartIDs())
