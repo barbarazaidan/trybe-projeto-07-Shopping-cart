@@ -61,7 +61,11 @@ async function decreasePrice(id) {
   // console.log('currentSum: ', sum)
   sum -= price;
   // console.log('decrease: ', sum)
+  if (sum < 0) {
+    sum = 0;
+  }
   totalPrice.innerText = sum;
+  // totalPrice.innerText = sum.toFixed(2);
 }
 
 // ------------------------------------------------------------------
@@ -129,6 +133,7 @@ async function sumPrice(price) {
   // console.log('sum: ', sum);
   saveCartPrice(sum);
   totalPrice.innerText = sum;
+  totalPrice.innerText = sum.toFixed(2);
   // console.log('totalPrice: ', totalPrice);
 }
 

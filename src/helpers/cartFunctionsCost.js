@@ -24,10 +24,15 @@ export function saveCartPrice(sum) {
 export async function decreaseCartPrice(id) {
   const productSelected = await fetchProduct(id);
   const { price } = productSelected;
-  // console.log('price: ', price)
+  // console.log('price: ', price);
   const priceLocalStorage = getSavedCartPrice();
-  const newPriceLocalStorage = priceLocalStorage - price;
-  // console.log('newPriceLocalStorage', newPriceLocalStorage)
+  let newPriceLocalStorage = priceLocalStorage - price;
+  // console.log('newPriceLocalStorage1', newPriceLocalStorage);
+  if (newPriceLocalStorage < 0) {
+    newPriceLocalStorage = 0;
+  }
+  // console.log('newPriceLocalStorage2', newPriceLocalStorage);
   totalPrice.innerText = newPriceLocalStorage.toString();
+  // totalPrice.innerText = newPriceLocalStorage.toFixed(2).toString();
   localStorage.setItem('cartTotalPrice', JSON.stringify(newPriceLocalStorage));
 }
