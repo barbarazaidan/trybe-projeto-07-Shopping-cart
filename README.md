@@ -3,11 +3,11 @@
 
 O objetivo do projeto é trabalhar a requisição à API e utilizar Fetch para desenvolver a página de uma loja virtual.
 
-## Detalhes do projeto
+## Requisitos do projeto
 
 Confira os requisitos exigidos pela Trybe (texto extraído dos readme oficial da Trybe):
 
-1. (TDD) Desenvolva testes de no mínimo 50% de cobertura das funções e linhas do arquivo fetchFunctions
+**1. (TDD) Desenvolva testes de no mínimo 50% de cobertura das funções e linhas do arquivo fetchFunctions**
 
 <details><summary>Detalhes</summary>
 <p>
@@ -17,7 +17,7 @@ Confira os requisitos exigidos pela Trybe (texto extraído dos readme oficial da
 </p>
 </details>
 
-2. Implemente a função fetchProductsList
+**2. Implemente a função fetchProductsList**
 
 <details><summary>Detalhes</summary>
 <p>
@@ -27,7 +27,7 @@ Confira os requisitos exigidos pela Trybe (texto extraído dos readme oficial da
 </p>
 </details>
 
-3. Crie uma listagem de produtos
+**3. Crie uma listagem de produtos**
 
 <details><summary>Detalhes</summary>
 <p>
@@ -38,7 +38,7 @@ Mercado Livre.
 </p>
 </details>
 
-4. Adicione um texto de carregando durante uma requisição à API
+**4. Adicione um texto de carregando durante uma requisição à API**
 
 <details><summary>Detalhes</summary>
 <p>
@@ -48,7 +48,7 @@ Mercado Livre.
 </p>
 </details>
 
-5. Exiba uma mensagem de erro caso algo dê errado na requisição à API
+**5. Exiba uma mensagem de erro caso algo dê errado na requisição à API**
 
 <details><summary>Detalhes</summary>
 <p>
@@ -59,7 +59,7 @@ recarregue a página e tente novamente
 </p>
 </details>
 
-6. (TDD) Desenvolva testes de no mínimo 100% de cobertura das funções e linhas do arquivo 
+**6. (TDD) Desenvolva testes de no mínimo 100% de cobertura das funções e linhas do arquivo**
 fetchFunctions
 
 <details><summary>Detalhes</summary>
@@ -70,7 +70,7 @@ fetchFunctions
 </p>
 </details>
 
-7. Implemente a função fetchProduct
+**7. Implemente a função fetchProduct**
 
 <details><summary>Detalhes</summary>
 <p>
@@ -80,7 +80,7 @@ fetchFunctions
 </p>
 </details>
 
-8. Adicione o produto ao carrinho de compras
+**8. Adicione o produto ao carrinho de compras**
 
 <details><summary>Detalhes</summary>
 <p>
@@ -90,7 +90,7 @@ fetchFunctions
 </p>
 </details>
 
-9. Carregue o carrinho de compras ao iniciar a página
+**9. Carregue o carrinho de compras ao iniciar a página**
 
 <details><summary>Detalhes</summary>
 <p>
@@ -100,7 +100,7 @@ fetchFunctions
 </p>
 </details>
 
-10. Calcule o valor total dos itens do carrinho de compras
+**10. Calcule o valor total dos itens do carrinho de compras**
 
 <details><summary>Detalhes</summary>
 <p>
@@ -110,7 +110,7 @@ fetchFunctions
 </p>
 </details>
 
-11. Faça uma requisição a API de CEPs e exiba o endereço do CEP
+**11. Faça uma requisição a API de CEPs e exiba o endereço do CEP**
 
 <details><summary>Detalhes</summary>
 <p>
