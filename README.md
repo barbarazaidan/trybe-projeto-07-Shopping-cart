@@ -17,6 +17,8 @@ Confira os requisitos exigidos pela Trybe (texto extraído dos readme oficial da
 </p>
 </details>
 
+---
+
 **2. Implemente a função fetchProductsList**
 
 <details><summary>Detalhes</summary>
@@ -26,6 +28,8 @@ Confira os requisitos exigidos pela Trybe (texto extraído dos readme oficial da
 
 </p>
 </details>
+
+---
 
 **3. Crie uma listagem de produtos**
 
@@ -38,6 +42,8 @@ Mercado Livre.
 </p>
 </details>
 
+---
+
 **4. Adicione um texto de carregando durante uma requisição à API**
 
 <details><summary>Detalhes</summary>
@@ -47,6 +53,8 @@ Mercado Livre.
 
 </p>
 </details>
+
+---
 
 **5. Exiba uma mensagem de erro caso algo dê errado na requisição à API**
 
@@ -59,6 +67,8 @@ recarregue a página e tente novamente
 </p>
 </details>
 
+---
+
 **6. (TDD) Desenvolva testes de no mínimo 100% de cobertura das funções e linhas do arquivo**
 fetchFunctions
 
@@ -70,6 +80,8 @@ fetchFunctions
 </p>
 </details>
 
+---
+
 **7. Implemente a função fetchProduct**
 
 <details><summary>Detalhes</summary>
@@ -79,6 +91,8 @@ fetchFunctions
 
 </p>
 </details>
+
+---
 
 **8. Adicione o produto ao carrinho de compras**
 
@@ -90,6 +104,8 @@ fetchFunctions
 </p>
 </details>
 
+---
+
 **9. Carregue o carrinho de compras ao iniciar a página**
 
 <details><summary>Detalhes</summary>
@@ -99,6 +115,8 @@ fetchFunctions
 
 </p>
 </details>
+
+---
 
 **10. Calcule o valor total dos itens do carrinho de compras**
 
@@ -110,6 +128,8 @@ fetchFunctions
 </p>
 </details>
 
+---
+
 **11. Faça uma requisição a API de CEPs e exiba o endereço do CEP**
 
 <details><summary>Detalhes</summary>
@@ -120,9 +140,7 @@ fetchFunctions
 </p>
 </details>
 
-## Observações sobre as pastas
-
--X-
+---
 
 #### Sobre o curso da Trybe
 O programa total de estudo conta com mais de 1.500 horas de aulas presenciais e online,divididas ao longo de 12 meses. O conteúdo aborda introdução ao desenvolvimento de software, front-end, back-end, ciência da computação, engenharia de software, metodologias ágeis e habilidades comportamentais.
